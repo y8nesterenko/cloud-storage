@@ -1,0 +1,15 @@
+.form {
+   margin: 0 auto;
+}
+
+.error {
+   color: var(--color-danger);
+   font-size: 0.8rem;
+   text-transform: lowercase;
+}
+
+.success {
+   color: teal;
+   font-size: 0.8rem;
+   text-transform: lowercase;
+}
