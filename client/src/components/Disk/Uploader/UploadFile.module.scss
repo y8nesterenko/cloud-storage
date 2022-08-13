@@ -1,0 +1,74 @@
+.uploadFile {
+   border-radius: var(--border-radius);
+   background-color: var(--color-secondary);
+   margin: 0.3rem 0;
+   padding: 0.3rem 0.5rem;
+   color: var(--color-dark);
+
+   .fileHeader {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+         background: none;
+         border: none;
+         font-weight: 700;
+         cursor: pointer;
+      }
+
+      img {
+         width: 1rem;
+      }
+   }
+
+   .progress {
+      height: 1.2rem;
+      border-radius: var(--border-radius);
+      background-color: var(--color-white);
+      display: flex;
+      margin: 0.2rem 0;
+      position: relative;
+
+      .progressBar {
+         border-radius: var(--border-radius);
+         background-color: var(--color-primary);
+      }
+
+      .progressPercent {
+         left: 50%;
+         position: absolute;
+         font-weight: 700;
+      }
+   }
+
+}
+
+@media (max-width: 468px) {
+   .uploadFile {
+      margin: 0.4rem -0.6rem;
+      padding: 0.3rem 0.3rem;
+
+      .fileHeader {
+         font-size: calc(var(--font-size) * 0.8);
+
+         .title {}
+
+         button {
+            margin-right: 0.5rem;
+         }
+      }
+
+      .progress {
+         height: 0.8rem;
+         margin: 0.1rem 0;
+
+         .progressBar {}
+
+         .progressPercent {
+            font-size: calc(var(--font-size) * 0.7);
+         }
+      }
+
+   }
+
+}

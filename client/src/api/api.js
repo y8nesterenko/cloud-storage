@@ -1,5 +1,6 @@
 import * as axios from "axios";
-import { addFile, setFiles } from "../reducers/fileReducer";
+import { addFile, deleteFileAC, setFiles } from "../reducers/fileReducer";
+import { addFileToUpload, changeUploadFile, showUploader } from "../reducers/uploadReducer";
 import { setUser } from "../reducers/userReducer";
 
 const instance = axios.create({
@@ -47,10 +48,20 @@ export const auth = () => {
    }
 }
 
-export const getFiles = (dirId) => {
+export const getFiles = (dirId, sort) => {
    return async dispatch => {
       try {
-         const response = await instance.get(`files${dirId ? '?parent=' + dirId : ''}`, {
+         let url = 'files'
+         if (dirId) {
+            url = `files?parent=${dirId}`
+         }
+         if (sort) {
+            url = `files?sort=${sort}`
+         }
+         if (dirId && sort) {
+            url = `files?parent=${dirId}&sort=${sort}`
+         }
+         const response = await instance.get(url, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
          })
          dispatch(setFiles(response.data))
@@ -72,6 +83,68 @@ export const createDir = (dirId, name) => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
          })
          dispatch(addFile(response.data))
+      }
+      catch (e) {
+         alert(e.response.data.message)
+      }
+   }
+}
+
+export const uploadFile = (file, dirId) => {
+   return async dispatch => {
+      try {
+         const formData = new FormData()
+         formData.append('file', file)
+         if (dirId) {
+            formData.append('parent', dirId)
+         }
+
+         const uploadFile = { name: file.name, progress: 0, id: Date.now() }
+         dispatch(showUploader())
+         dispatch(addFileToUpload(uploadFile))
+
+         const response = await instance.post('files/upload', formData, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            onUploadProgress: progressEvent => {
+               const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
+               if (totalLength) {
+                  uploadFile.progress = Math.round((progressEvent.loaded * 100) / totalLength)
+                  dispatch(changeUploadFile(uploadFile))
+               }
+            }
+         })
+         dispatch(addFile(response.data))
+      }
+      catch (e) {
+         alert(e.response.data.message)
+      }
+   }
+}
+
+export const downloadFile = async (file) => {
+   const response = await fetch(`http://localhost:5000/api/files/download?id=${file._id}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+   })
+   if (response.status === 200) {
+      const blob = await response.blob()
+      const downloadUrl = window.URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = downloadUrl
+      link.download = file.name
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+   }
+}
+
+export const deleteFile = (file) => {
+   return async dispatch => {
+      try {
+         const response = await instance.delete(`files?id=${file._id}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+         })
+         dispatch(deleteFileAC(file._id))
+         return (response.data.message)
       }
       catch (e) {
          alert(e.response.data.message)

@@ -1,11 +1,43 @@
 .disk {
    margin-top: 20px;
+   height: calc(100vh - 60px - 40px);
 
    .buttons {
       display: flex;
 
+      button {
+         cursor: pointer;
+      }
+
       .create {
          margin-left: 10px;
       }
+
+      .uploadFileInput {
+         display: none;
+      }
+
+      .uploadFileLabel {
+         border: 2px dashed var(--color-primary);
+         padding: 5px 1px;
+         cursor: pointer;
+         margin-left: 1rem;
+      }
    }
+
+   .select {
+      margin-left: 1rem;
+   }
+}
+
+.dropArea {
+   width: 100%;
+   height: calc(100vh - 60px - 40px);
+   margin: 20px;
+   border: 2px dashed var(--color-primary);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: calc(var(--font-size) * 2);
+   color: var(--color-gray);
 }

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createDir, getFiles, uploadFile } from '../../api/api';
+import { getFiles, uploadFile } from '../../api/api';
 import FileList from './fileList/FileList';
 import style from './Disk.module.scss';
 import Popup from './Popup';
 import { setCurrentDir } from '../../reducers/fileReducer';
+import Uploader from './Uploader/Uploader';
 
 const Disk = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [dragEnter, setDragEnter] = useState(false);
+  const [sort, setSort] = useState('name');
   const dispatch = useDispatch();
   const currentDir = useSelector((state) => state.files.currentDir);
   const dirStack = useSelector((state) => state.files.dirStack);
@@ -19,8 +21,8 @@ const Disk = () => {
   };
 
   useEffect(() => {
-    dispatch(getFiles(currentDir));
-  }, [currentDir]);
+    dispatch(getFiles(currentDir, sort));
+  }, [currentDir, sort]);
 
   const fileUploadHandler = (e) => {
     const files = [...e.target.files];
@@ -61,11 +63,20 @@ const Disk = () => {
         <button
           className={style.create}
           onClick={() => {
-            setIsVisible(true);
+            setIsPopupVisible(true);
           }}
         >
           Create folder
         </button>
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          className={style.select}
+        >
+          <option value='name'>by name</option>
+          <option value='type'>by type</option>
+          <option value='date'>by date</option>
+        </select>
         <div className={style.uploadFile}>
           <label htmlFor='uploadFileInput' className={style.uploadFileLabel}>
             Upload a file
@@ -83,10 +94,11 @@ const Disk = () => {
       </div>
       <FileList />
       <Popup
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
+        isVisible={isPopupVisible}
+        setIsVisible={setIsPopupVisible}
         currentDir={currentDir}
       />
+      <Uploader />
     </div>
   ) : (
     <div

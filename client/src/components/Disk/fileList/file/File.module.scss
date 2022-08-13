@@ -4,26 +4,46 @@
    display: grid;
    grid-template-columns: 1fr 4fr repeat(4, 1fr);
    align-items: center;
-   transition: all 0.3s ease 0s;   
-   cursor: pointer;
+   transition: all 0.5s ease 0s;
 
-   &:hover {
-transform: scale(1.02);
+   .name {
+      grid-column-start: 2;
+      cursor: pointer;
    }
 
-      .name {
-         grid-column-start: 2;
-      }
-      .date {
-         grid-column-start: 5;
-         justify-self: center;
-      }
-      .size {
-         grid-column-start: 6;
-         justify-self: center;
+   .date {
+      grid-column-start: 5;
+      justify-self: center;
+   }
+
+   .size {
+      grid-column-start: 6;
+      justify-self: center;
+   }
+
+   .fileImage {
+      justify-self: center;
+      cursor: pointer;
+   }
+
+   .buttons {
+      display: none;
+      cursor: pointer;
+      max-width: 5rem;
+   }
+
+   &:hover {
+      transform: scale(1.02);
+
+      .download {
+         grid-column-start: 3;
+         display: block;
       }
 
-      .fileImage {
-         justify-self: center;
+      .delete {
+         grid-column-start: 4;
+         display: block;
       }
+   }
+
 }

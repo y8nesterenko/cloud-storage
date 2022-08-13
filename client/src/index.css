@@ -15,14 +15,12 @@
   --color-black: hsl(252, 30%, 10%);
   --color-transparent: rgba(214, 204, 255, 0.5);
 
-  --border-radius: 2rem;
-  --card-border-radius: 1rem;
+  --border-radius: 1rem;
   --btn-padding: 0.6rem 2rem;
   --search-padding: 0.6rem 1rem;
-  --card-padding: 1rem;
+  --padding: 1rem;
 
-  --font-size-standart: 0.9rem;
-  --font-size-big: 1.4rem;
+  --font-size: 1rem;
 }
 
 * {
@@ -67,3 +65,18 @@ a:hover {
   cursor: pointer;
 }
 
+.file-enter-active {
+  animation: file-enter 0.7s forwards;
+
+}
+
+@keyframes file-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

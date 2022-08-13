@@ -1,0 +1,60 @@
+.uploader {
+   height: max-content;
+   max-height: 20rem;
+   width: 20rem;
+   position: fixed;
+   background-color: var(--color-primary);
+   color: var(--color-white);
+   bottom: 1rem;
+   right: 0.5rem;
+   padding: var(--padding);
+   border-radius: var(--border-radius);
+   overflow-y: auto;
+
+   .header {
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+         font-size: calc(var(--font-size) * 1.2);
+         font-weight: 700;
+      }
+
+      button {
+         width: 2rem;
+         font-weight: 700;
+         font-size: calc(var(--font-size) * 1.1);
+         color: inherit;
+         background: none;
+         border: none;
+         cursor: pointer;
+      }
+
+   }
+
+}
+
+
+@media (max-width: 468px) {
+   .uploader {
+      height: max-content;
+      width: 95vw;
+      margin: 0 auto;
+      bottom: 0.3rem;
+      right: 2%;
+   
+   
+      .header {
+         margin-bottom: 0.8rem;
+   
+         .title {
+            font-size: calc(var(--font-size) * 0.8);
+         }
+   
+         button {
+            font-size: calc(var(--font-size) * 0.7);
+         }   
+      }
+   }
+
+}
