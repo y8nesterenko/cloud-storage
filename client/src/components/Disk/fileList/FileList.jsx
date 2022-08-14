@@ -6,32 +6,45 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const FileList = () => {
   const files = useSelector((state) => state.files.files);
+  const filesView = useSelector((state) => state.files.view);
 
   if (files.length === 0) {
     return <h2>This folder is empty</h2>;
   }
 
-  return (
-    <div className={style.fileList}>
-      <div className={style.header}>
-        <div className={style.listItem + ' ' + style.name}>Name</div>
-        <div className={style.listItem + ' ' + style.date}>Date</div>
-        <div className={style.listItem + ' ' + style.size}>Size</div>
+  if (filesView === 'list') {
+    return (
+      <div className={style.fileList}>
+        <div className={style.header}>
+          <div className={style.listItem + ' ' + style.name}>Name</div>
+          <div className={style.listItem + ' ' + style.date}>Date</div>
+          <div className={style.listItem + ' ' + style.size}>Size</div>
+        </div>
+        <TransitionGroup>
+          {files.map((file) => (
+            <CSSTransition
+              key={file._id}
+              timeout={500}
+              classNames={'file'}
+              exit={false}
+            >
+              <File file={file} />
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
       </div>
-      <TransitionGroup>
+    );
+  }
+
+  if (filesView === 'plate') {
+    return (
+      <div className={style.filePlate}>
         {files.map((file) => (
-          <CSSTransition
-            key={file._id}
-            timeout={500}
-            classNames={'file'}
-            exit={false}
-          >
-            <File file={file} />
-          </CSSTransition>
+          <File key={file.id} file={file} />
         ))}
-      </TransitionGroup>
-    </div>
-  );
+      </div>
+    );
+  }
 };
 
 export default FileList;

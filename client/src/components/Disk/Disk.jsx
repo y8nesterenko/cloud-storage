@@ -4,7 +4,7 @@ import { getFiles, uploadFile } from '../../api/api';
 import FileList from './fileList/FileList';
 import style from './Disk.module.scss';
 import Popup from './Popup';
-import { setCurrentDir } from '../../reducers/fileReducer';
+import { setCurrentDir, setView } from '../../reducers/fileReducer';
 import Uploader from './Uploader/Uploader';
 import Preloader from '../Preloader/Preloader';
 
@@ -97,6 +97,14 @@ const Disk = () => {
           <option value='type'>by type</option>
           <option value='date'>by date</option>
         </select>
+        <button
+          className={style.plate}
+          onClick={() => dispatch(setView('plate'))}
+        />
+        <button
+          className={style.list}
+          onClick={() => dispatch(setView('list'))}
+        />
       </div>
       <FileList />
       <Popup

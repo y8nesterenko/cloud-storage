@@ -28,6 +28,25 @@
    .select {
       margin-left: auto;
    }
+
+   .list, .plate {
+      height: 1.2rem;
+      width: 1.2rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background: no-repeat center center;
+      background-size: contain;
+      margin: 0 0.3rem;
+   }
+
+   .list {
+      background-image: url('../../assets/img/list.svg');
+   }
+
+   .plate {
+      background-image: url('../../assets/img/plate.svg');
+   }
 }
 
 .dropArea {
