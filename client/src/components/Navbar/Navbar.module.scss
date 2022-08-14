@@ -22,20 +22,27 @@
          }
       }
 
-      .columnLeft img {
-         height: 50px;
-      }
+      .columnLeft {
 
+         input.search {
+            width: 6rem;
+         }
+
+         img {
+            height: 50px;
+         }
+      }
    }
 
    .header {
-      font-size: calc(var(--font-size) * 1.2);      
+      font-size: calc(var(--font-size) * 1.2);
       font-weight: 700;
    }
 
    .login {}
 
    .registration {}
+
 }
 
 @media (max-width: 468px) {

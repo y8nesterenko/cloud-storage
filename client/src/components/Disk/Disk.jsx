@@ -6,6 +6,7 @@ import style from './Disk.module.scss';
 import Popup from './Popup';
 import { setCurrentDir } from '../../reducers/fileReducer';
 import Uploader from './Uploader/Uploader';
+import Preloader from '../Preloader/Preloader';
 
 const Disk = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -14,6 +15,7 @@ const Disk = () => {
   const dispatch = useDispatch();
   const currentDir = useSelector((state) => state.files.currentDir);
   const dirStack = useSelector((state) => state.files.dirStack);
+  const preloader = useSelector((state) => state.app.preloader);
 
   const goBack = () => {
     const prevDirId = dirStack.pop();
@@ -49,6 +51,10 @@ const Disk = () => {
     setDragEnter(false);
   };
 
+  if (preloader) {
+    return <Preloader />;
+  }
+
   return !dragEnter ? (
     <div
       className={style.disk}
@@ -68,15 +74,6 @@ const Disk = () => {
         >
           Create folder
         </button>
-        <select
-          value={sort}
-          onChange={(e) => setSort(e.target.value)}
-          className={style.select}
-        >
-          <option value='name'>by name</option>
-          <option value='type'>by type</option>
-          <option value='date'>by date</option>
-        </select>
         <div className={style.uploadFile}>
           <label htmlFor='uploadFileInput' className={style.uploadFileLabel}>
             Upload a file
@@ -91,6 +88,15 @@ const Disk = () => {
             }}
           />
         </div>
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          className={style.select}
+        >
+          <option value='name'>by name</option>
+          <option value='type'>by type</option>
+          <option value='date'>by date</option>
+        </select>
       </div>
       <FileList />
       <Popup

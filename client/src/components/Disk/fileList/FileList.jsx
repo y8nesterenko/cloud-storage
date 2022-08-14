@@ -7,6 +7,10 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 const FileList = () => {
   const files = useSelector((state) => state.files.files);
 
+  if (files.length === 0) {
+    return <h2>This folder is empty</h2>;
+  }
+
   return (
     <div className={style.fileList}>
       <div className={style.header}>

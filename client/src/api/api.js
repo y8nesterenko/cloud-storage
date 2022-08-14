@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import { hidePreloader, showPreloader } from "../reducers/appReducer";
 import { addFile, deleteFileAC, setFiles } from "../reducers/fileReducer";
 import { addFileToUpload, changeUploadFile, showUploader } from "../reducers/uploadReducer";
 import { setUser } from "../reducers/userReducer";
@@ -51,6 +52,7 @@ export const auth = () => {
 export const getFiles = (dirId, sort) => {
    return async dispatch => {
       try {
+         dispatch(showPreloader())
          let url = 'files'
          if (dirId) {
             url = `files?parent=${dirId}`
@@ -68,6 +70,8 @@ export const getFiles = (dirId, sort) => {
       }
       catch (e) {
          alert(e.response.data.message)
+      } finally {
+         dispatch(hidePreloader())
       }
    }
 }
@@ -148,6 +152,22 @@ export const deleteFile = (file) => {
       }
       catch (e) {
          alert(e.response.data.message)
+      }
+   }
+}
+
+export const searchFile = (searchQuery) => {
+   return async dispatch => {
+      try {
+         const response = await instance.get(`files/search?search=${searchQuery}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+         })
+         dispatch(setFiles(response.data))
+      }
+      catch (e) {
+         alert(e?.response?.data?.message)
+      } finally {
+         dispatch(hidePreloader())
       }
    }
 }
