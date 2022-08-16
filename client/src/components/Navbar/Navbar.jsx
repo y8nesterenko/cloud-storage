@@ -67,7 +67,9 @@ const Navbar = () => {
             <NavLink to='/profile'>
               <img src={avatar} alt='avatar' className={style.avatar} />
             </NavLink>
-            <a onClick={() => dispatch(logout())}>Sign out</a>
+            <a className={style.signOut} onClick={() => dispatch(logout())}>
+              Sign out
+            </a>
           </div>
         ) : (
           <div className={style.columnRight}>
