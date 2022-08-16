@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth } from './api/api';
 import Disk from './components/Disk/Disk';
+import Profile from './components/Profile/Profile';
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -23,6 +23,7 @@ function App() {
           {isAuth ? (
             <Routes>
               <Route path='/' element={<Disk />} />
+              <Route path='/profile' element={<Profile />} />
               <Route exact path='*' element={<Navigate to={'/'} />} />
             </Routes>
           ) : (

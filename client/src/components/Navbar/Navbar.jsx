@@ -6,13 +6,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
 import { getFiles, searchFile } from '../../api/api';
 import { showPreloader } from '../../reducers/appReducer';
+import avatarLogo from '../../assets/img/avatar.svg';
+import { SERVER_URL } from '../../config';
 
 const Navbar = () => {
   const isAuth = useSelector((state) => state.user.isAuth);
   const currentDir = useSelector((state) => state.files.currentDir);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchTimeout, setSearchTimeout] = useState(false);
+  const avatar = currentUser.avatar
+    ? `${SERVER_URL + currentUser.avatar}`
+    : avatarLogo;
 
   const searchHandler = (e) => {
     setSearchQuery(e.target.value);
@@ -58,6 +64,9 @@ const Navbar = () => {
 
         {isAuth ? (
           <div className={style.columnRight}>
+            <NavLink to='/profile'>
+              <img src={avatar} alt='avatar' className={style.avatar} />
+            </NavLink>
             <a onClick={() => dispatch(logout())}>Sign out</a>
           </div>
         ) : (

@@ -43,6 +43,12 @@
 
    .registration {}
 
+   .avatar {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+   }
+
 }
 
 @media (max-width: 468px) {

@@ -3,9 +3,10 @@ import { hidePreloader, showPreloader } from "../reducers/appReducer";
 import { addFile, deleteFileAC, setFiles } from "../reducers/fileReducer";
 import { addFileToUpload, changeUploadFile, showUploader } from "../reducers/uploadReducer";
 import { setUser } from "../reducers/userReducer";
+import { SERVER_URL } from "../config";
 
 const instance = axios.create({
-   baseURL: 'http://localhost:5000/api/',
+   baseURL: `${SERVER_URL}api/`,
    // withCredentials: true,
    // headers: { 'API-KEY': '718c556a-277b-4513-b77b-893b6f3e2309' },
 });
@@ -126,7 +127,7 @@ export const uploadFile = (file, dirId) => {
 }
 
 export const downloadFile = async (file) => {
-   const response = await fetch(`http://localhost:5000/api/files/download?id=${file._id}`, {
+   const response = await fetch(`${SERVER_URL}api/files/download?id=${file._id}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
    })
    if (response.status === 200) {
@@ -172,3 +173,30 @@ export const searchFile = (searchQuery) => {
    }
 }
 
+export const uploadAvatar = (file) => {
+   return async dispatch => {
+      try {
+         const formData = new FormData()
+         formData.append('file', file)
+         const response = await instance.post(`files/avatar`, formData,
+            { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+         )
+         dispatch(setUser(response.data))
+      } catch (e) {
+         console.log(e)
+      }
+   }
+}
+
+export const deleteAvatar = () => {
+   return async dispatch => {
+      try {
+         const response = await instance.delete(`files/avatar`,
+            { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+         )
+         dispatch(setUser(response.data))
+      } catch (e) {
+         console.log(e)
+      }
+   }
+}
