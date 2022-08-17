@@ -16,6 +16,7 @@ const Disk = () => {
   const currentDir = useSelector((state) => state.files.currentDir);
   const dirStack = useSelector((state) => state.files.dirStack);
   const preloader = useSelector((state) => state.app.preloader);
+  const view = useSelector((state) => state.files.view);
 
   const goBack = () => {
     const prevDirId = dirStack.pop();
@@ -99,14 +100,17 @@ const Disk = () => {
           <option value='type'>by type</option>
           <option value='date'>by date</option>
         </select>
-        <button
-          className={style.plate + ' ' + '_icon-plate'}
-          onClick={() => dispatch(setView('plate'))}
-        />
-        <button
-          className={style.list + ' ' + '_icon-list'}
-          onClick={() => dispatch(setView('list'))}
-        />
+        {view === 'list' ? (
+          <button
+            className={style.plate + ' ' + '_icon-plate'}
+            onClick={() => dispatch(setView('plate'))}
+          />
+        ) : (
+          <button
+            className={style.list + ' ' + '_icon-list'}
+            onClick={() => dispatch(setView('list'))}
+          />
+        )}
       </div>
       <FileList />
       <Popup
