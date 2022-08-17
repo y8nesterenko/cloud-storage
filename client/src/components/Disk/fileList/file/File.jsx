@@ -1,8 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFile, downloadFile } from '../../../../api/api';
-import fileLogo from '../../../../assets/img/file.svg';
-import folderLogo from '../../../../assets/img/folder.svg';
 import { pushToStack, setCurrentDir } from '../../../../reducers/fileReducer';
 import sizeFormat from '../../../../utils/sizeFormat';
 import style from './File.module.scss';

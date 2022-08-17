@@ -1,3 +1,12 @@
+
+i {
+   text-align: center;
+   color: var(--color-primary);
+   font-size: calc(var(--font-size) *2);
+   cursor: pointer;
+   transition: all 0.5s ease 0s;
+}
+
 .file {
    margin: 1.8rem 0;
    padding-bottom: 0.5rem;
@@ -68,13 +77,26 @@
       cursor: pointer;
    }
 
-   &:hover .buttons {
-      display: flex;
-      margin-bottom: 0.25rem;
+   &:hover  {
+
+      .name, i {
+         color: var(--color-white);
+      }
+
+      .buttons {
+         display: flex;
+         margin-bottom: 0.25rem;
+      }
    }
 
    .name {
       margin-bottom: 0.25rem;
+      transition: all 0.5s ease 0s;
+      text-align: center;
+   }
+
+   i {
+      transition: all 0.5s ease 0s;
    }
 
    .date {
@@ -85,12 +107,4 @@
       display: none;
    }
 
-}
-
-i {
-   text-align: center;
-   color: var(--color-primary);
-   font-size: calc(var(--font-size) *2);
-   cursor: pointer;
-   transition: all 0.5s ease 0s;
 }

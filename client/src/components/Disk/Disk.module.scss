@@ -15,8 +15,15 @@
 
       .uploadFileLabel {
 
+         i {
+            color: var(--color-gray);
+         }
+
          &:hover {
             cursor: pointer;
+            i {
+               color: var(--color-secondary);
+            }
          }
 
          i {
