@@ -17,7 +17,7 @@ class FileController {
          } else {
             file.path = `${parentFile.path}/${file.name}`
             await fileService.createDir(req, file)
-            parentFile.childs.push(file._id)
+            parentFile.children.push(file._id)
             await parentFile.save()
          }
          await file.save()
@@ -148,7 +148,7 @@ class FileController {
          const file = req.files.file
          const user = await User.findById(req.user.id)
          const avatarName = Uuid.v4() + ".jpg"
-         file.mv(config.get('staticPath') + "\\" + avatarName)
+         file.mv(config.get('staticPath') + "/" + avatarName)
          user.avatar = avatarName
          await user.save()
          return res.json(user)
@@ -161,7 +161,7 @@ class FileController {
    async deleteAvatar(req, res) {
       try {
          const user = await User.findById(req.user.id)
-         fs.unlinkSync(config.get('staticPath') + "\\" + user.avatar)
+         fs.unlinkSync(config.get('staticPath') + "/" + user.avatar)
          user.avatar = null
          await user.save()
          return res.json(user)

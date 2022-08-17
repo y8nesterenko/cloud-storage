@@ -25,11 +25,11 @@ const Navbar = () => {
     if (searchTimeout !== false) {
       clearTimeout(searchTimeout);
     }
-    dispatch(showPreloader());
     if (e.target.value !== '') {
       setSearchTimeout(
         setTimeout(
           (value) => {
+            dispatch(showPreloader());
             dispatch(searchFile(value));
           },
           500,
@@ -46,19 +46,22 @@ const Navbar = () => {
       <div className={style.container}>
         <div className={style.columnLeft}>
           <div className={style.logo}>
-            <img src={Logo} alt='logo' />
+            <NavLink to='/' className='_icon-logo'></NavLink>
           </div>
           <div className={style.header}>
             <NavLink to='/'>NY Cloud Storage</NavLink>
           </div>
           {isAuth && (
-            <input
-              value={searchQuery}
-              onChange={(e) => searchHandler(e)}
-              className={style.search}
-              type='text'
-              placeholder='search'
-            />
+            <div className={style.searchBar}>
+              <i className='_icon-search'></i>
+              <input
+                value={searchQuery}
+                onChange={(e) => searchHandler(e)}
+                className={style.search}
+                type='text'
+                placeholder='search'
+              />
+            </div>
           )}
         </div>
 

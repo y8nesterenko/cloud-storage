@@ -29,70 +29,37 @@ const File = ({ file }) => {
     dispatch(deleteFile(file));
   };
 
-  if (filesView === 'list') {
-    return (
-      <div className={style.file + ' ' + 'file'} onClick={() => openDir(file)}>
-        <img
-          src={file.type === 'dir' ? folderLogo : fileLogo}
-          alt='file logo'
-          className={style.fileImage}
-        />
-        <div className={style.name}>{file.name}</div>
-        {file.type !== 'dir' && (
-          <button
-            className={style.buttons + ' ' + style.download}
-            onClick={(e) => {
-              downloadHandler(e);
-            }}
-          >
-            download
-          </button>
-        )}
+  return (
+    <div
+      className={
+        filesView === 'list'
+          ? style.file + ' ' + 'file'
+          : style.filePlate + ' ' + 'file'
+      }
+      onClick={() => openDir(file)}
+    >
+      <i className={file.type === 'dir' ? '_icon-folder' : '_icon-file'} />
+      <div className={style.name}>{file.name}</div>
+      {file.type !== 'dir' && (
         <button
-          className={style.buttons + ' ' + style.delete}
-          onClick={(e) => deleteHandler(e)}
+          className={style.buttons + ' ' + style.download}
+          onClick={(e) => {
+            downloadHandler(e);
+          }}
         >
-          delete
+          download
         </button>
-        <div className={style.date}>{file.date.slice(0, 10)}</div>
-        <div className={style.size}>{sizeFormat(file.size)}</div>
-      </div>
-    );
-  }
-
-  if (filesView === 'plate') {
-    return (
-      <div
-        className={style.filePlate + ' ' + 'file'}
-        onClick={() => openDir(file)}
+      )}
+      <button
+        className={style.buttons + ' ' + style.delete}
+        onClick={(e) => deleteHandler(e)}
       >
-        <img
-          src={file.type === 'dir' ? folderLogo : fileLogo}
-          alt='file logo'
-          className={style.fileImage}
-        />
-        <div className={style.name}>{file.name}</div>
-        <div className={style.buttons}>
-          {file.type !== 'dir' && (
-            <button
-              className={style.buttons + ' ' + style.download}
-              onClick={(e) => {
-                downloadHandler(e);
-              }}
-            >
-              download
-            </button>
-          )}
-          <button
-            className={style.buttons + ' ' + style.delete}
-            onClick={(e) => deleteHandler(e)}
-          >
-            delete
-          </button>
-        </div>
-      </div>
-    );
-  }
+        delete
+      </button>
+      <div className={style.date}>{file.date.slice(0, 10)}</div>
+      <div className={style.size}>{sizeFormat(file.size)}</div>
+    </div>
+  );
 };
 
 export default File;

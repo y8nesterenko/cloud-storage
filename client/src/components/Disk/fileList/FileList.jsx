@@ -40,7 +40,7 @@ const FileList = () => {
     return (
       <div className={style.filePlate}>
         {files.map((file) => (
-          <File key={file.id} file={file} />
+          <File key={file._id} file={file} />
         ))}
       </div>
     );

@@ -21,11 +21,6 @@ const Login = (props) => {
 
   return (
     <div className={style.login}>
-      {isLogging ? (
-        <h2>Please sign up in the form below</h2>
-      ) : (
-        <h2>Login in the form below</h2>
-      )}
       <Formik
         initialValues={{
           email: '',
@@ -37,7 +32,12 @@ const Login = (props) => {
           setSubmitting(true);
 
           if (isLogging) {
-            dispatch(login(values.email, values.password));
+            dispatch(login(values.email, values.password)).then((response) => {
+              setStatus(response);
+              setTimeout(() => {
+                setStatus(null);
+              }, 5000);
+            });
           }
 
           if (!isLogging) {
@@ -48,10 +48,12 @@ const Login = (props) => {
               }
               setTimeout(() => {
                 setStatus(null);
+                if (response === 'User was created') {
+                  props.router.navigate('/login');
+                }
               }, 5000);
             });
           }
-
           setSubmitting(false);
         }}
       >
@@ -67,7 +69,13 @@ const Login = (props) => {
           /* and other goodies */
         }) => (
           <form className={style.form} onSubmit={handleSubmit}>
+            {isLogging ? (
+              <h2>Please login in the form below</h2>
+            ) : (
+              <h2>Please sign up in the form below</h2>
+            )}
             <div className={style.field}>
+              <i className='_icon-avatar' />
               <input
                 type='email'
                 name='email'
@@ -78,14 +86,13 @@ const Login = (props) => {
                 touched={touched.email}
                 error={errors.email}
               />
-              {
-                <span className={style.error}>
-                  {errors.email && touched.email && errors.email}
-                </span>
-              }
             </div>
+            {errors.email && touched.email && (
+              <div className={style.error}>{errors.email}</div>
+            )}
 
             <div className={style.field}>
+              <i className='_icon-password' />
               <input
                 type='password'
                 name='password'
@@ -96,15 +103,15 @@ const Login = (props) => {
                 touched={touched.password}
                 error={errors.password}
               />
-              {
-                <span className={style.error}>
-                  {errors.password && touched.password && errors.password}{' '}
-                </span>
-              }
             </div>
+            {errors.password && touched.password && (
+              <div className={style.error}>{errors.password}</div>
+            )}
 
             {!isLogging && (
               <div className={style.field}>
+                <i className='_icon-password' />
+
                 <input
                   type='password'
                   name='passwordConfirmation'
@@ -115,22 +122,25 @@ const Login = (props) => {
                   touched={touched.passwordConfirmation}
                   error={errors.passwordConfirmation}
                 />
-                {
-                  <span className={style.error}>
-                    {errors.passwordConfirmation &&
-                      touched.passwordConfirmation &&
-                      errors.passwordConfirmation}{' '}
-                  </span>
-                }
               </div>
             )}
+            {errors.passwordConfirmation && touched.passwordConfirmation && (
+              <div className={style.error}>{errors.passwordConfirmation}</div>
+            )}
+
+            <div className={isSuccess ? style.success : style.error}>
+              {status}
+            </div>
 
             <button className='btn' type='submit' disabled={isSubmitting}>
               {isLogging ? <span>Sign in</span> : <span>Sign up</span>}
             </button>
-            <div className={isSuccess ? style.success : style.error}>
-              {status}
-            </div>
+
+            {!isLogging && status === 'User was created' && (
+              <div className={style.success}>
+                In 5 seconds you will be redirected to login page
+              </div>
+            )}
           </form>
         )}
       </Formik>

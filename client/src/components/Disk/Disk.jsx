@@ -63,9 +63,10 @@ const Disk = () => {
       onDragLeave={dragLeaveHandler}
     >
       <div className={style.buttons}>
-        <button className={style.back} onClick={() => goBack()}>
-          Back
-        </button>
+        <button
+          className={style.back + ' ' + '_icon-arrow_left'}
+          onClick={() => goBack()}
+        />
         <button
           className={style.create}
           onClick={() => {
@@ -74,9 +75,10 @@ const Disk = () => {
         >
           Create folder
         </button>
-        <div className={style.uploadFile}>
+        <button className={style.uploadFile}>
           <label htmlFor='uploadFileInput' className={style.uploadFileLabel}>
-            Upload a file
+            <span>Upload a file</span>
+            <i className='_icon-plus'></i>
           </label>
           <input
             type='file'
@@ -87,7 +89,7 @@ const Disk = () => {
               fileUploadHandler(e);
             }}
           />
-        </div>
+        </button>
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value)}
@@ -98,11 +100,11 @@ const Disk = () => {
           <option value='date'>by date</option>
         </select>
         <button
-          className={style.plate}
+          className={style.plate + ' ' + '_icon-plate'}
           onClick={() => dispatch(setView('plate'))}
         />
         <button
-          className={style.list}
+          className={style.list + ' ' + '_icon-list'}
           onClick={() => dispatch(setView('list'))}
         />
       </div>

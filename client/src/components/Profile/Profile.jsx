@@ -19,6 +19,7 @@ const Profile = () => {
         type='file'
         placeholder='upload avatar'
       />
+      <div></div>
     </div>
   );
 };

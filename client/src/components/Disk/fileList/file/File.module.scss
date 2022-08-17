@@ -1,19 +1,22 @@
 .file {
-   margin: 20px 0;
+   margin: 1.8rem 0;
+   padding-bottom: 0.5rem;
    border-bottom: 2px solid var(--color-primary);
    display: grid;
    grid-template-columns: 1fr 4fr repeat(4, 1fr);
    align-items: center;
-   transition: all 0.5s ease 0s;
+   color: var(--color-primary);
+   font-weight: 600;
 
    .name {
       grid-column-start: 2;
       cursor: pointer;
+      transition: all 0.5s ease 0s;
    }
 
    .date {
       grid-column-start: 5;
-      justify-self: center;
+      justify-self: center;      
    }
 
    .size {
@@ -33,42 +36,61 @@
    }
 
    &:hover {
-      transform: scale(1.02);
+
+      .name, i {
+         color: var(--color-white);
+      }
 
       .download {
          grid-column-start: 3;
          display: block;
+         padding: 0.4rem 0;
       }
 
       .delete {
          grid-column-start: 4;
          display: block;
+         padding: 0.4rem 0;
       }
    }
 }
 
 .filePlate {
    width: 150px;
-   height: 150px;
+   height: fit-content;
    cursor: pointer;
    display: flex; 
    flex-direction: column;
    align-items: center; 
    
-   img {
-      height: 100px;
-      width: 100px;
-   }
    .buttons {
       display: none;
-      
-      button {
-         margin: 0 0.5rem;
-      }
+      cursor: pointer;
    }
 
    &:hover .buttons {
       display: flex;
+      margin-bottom: 0.25rem;
    }
 
+   .name {
+      margin-bottom: 0.25rem;
+   }
+
+   .date {
+      display: none;
+   }
+
+   .size {
+      display: none;
+   }
+
+}
+
+i {
+   text-align: center;
+   color: var(--color-primary);
+   font-size: calc(var(--font-size) *2);
+   cursor: pointer;
+   transition: all 0.5s ease 0s;
 }

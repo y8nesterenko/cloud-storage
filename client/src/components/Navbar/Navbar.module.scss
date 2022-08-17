@@ -4,6 +4,7 @@
    padding: 1rem 0;
    width: 100%;
    background-color: var(--color-primary);
+   color: var(--color-white);
 
    .container {
       display: flex;
@@ -24,12 +25,49 @@
 
       .columnLeft {
 
+         .logo {
+            font-size: calc(var(--font-size) * 2.5);
+         }
+
          input.search {
-            width: 6rem;
+            max-width: 5rem;
+            border-radius: var(--border-radius);
+            padding: 0.3rem 0.6rem;
+            border: none;
+            outline: none;
          }
 
          img {
             height: 50px;
+         }
+      }
+
+      .searchBar {
+         background: var(--color-white);
+         border-radius: var(--border-radius);
+         padding: calc(var(--font-size) / 6);
+         border: 1px solid var(--color-dark);
+         position: relative;
+         display: flex;
+         align-items: center;
+
+         i {
+            font-size: var(--font-size);
+            color: var(--color-dark);
+            position: absolute;
+            left: var(--font-size);
+         }
+
+         input {
+            text-align: center;
+            background: transparent;
+            margin-left: 1rem;
+            font-size: var(--font-size);
+            color: var(--color-dark);
+
+            &::placeholder {
+               color: var(--color-gray);
+            }
          }
       }
    }
@@ -44,13 +82,14 @@
    .registration {}
 
    .avatar {
-      width: 3.2rem;
-      height: 3.2rem;
+      width: calc(var(--font-size) * 3);
+      height: calc(var(--font-size) * 3);
       border-radius: 50%;
    }
 
    .signOut {
       margin-left: 1rem;
+      color: var(--color-secondary);
    }
 
 }
@@ -58,6 +97,7 @@
 @media (max-width: 468px) {
 
    .navbar {
+      height: 5rem;
 
       .container {
          margin: 0 5px;

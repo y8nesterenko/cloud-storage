@@ -12,10 +12,19 @@ const instance = axios.create({
 });
 
 export const registration = async (email, password) => {
-   const response = await instance.post('auth/registration',
-      { email, password }
-   )
-   return response.data.message
+   try {
+      const response = await instance.post('auth/registration',
+         { email, password }
+      )
+      return response.data.message
+   }
+   catch (e) {
+      return (e.response.data.message)
+   }
+   // const response = await instance.post('auth/registration',
+   //    { email, password }
+   // )
+   // return response.data.message
 }
 
 export const login = (email, password) => {
@@ -28,7 +37,7 @@ export const login = (email, password) => {
          localStorage.setItem('token', response.data.token)
       }
       catch (e) {
-         alert(e.response.data.message)
+         return (e.response.data.message)
       }
    }
 }
