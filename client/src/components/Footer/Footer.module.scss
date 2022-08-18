@@ -1,0 +1,18 @@
+footer {
+   height: 5vh;
+   background-color: var(--color-primary);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 1rem;
+   color: var(--color-white);
+   font-size: var(--font-size);
+
+   a {
+      font-size: 4vh;
+
+      &:hover {
+         color: var(--color-secondary);
+      }
+   }
+}

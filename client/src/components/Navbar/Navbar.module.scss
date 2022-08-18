@@ -21,7 +21,6 @@
          display: flex;
          align-items: center;
 
-
          div {
             margin-right: 1rem;
          }
@@ -105,19 +104,30 @@
       height: 5rem;
 
       .container {
-         margin: 0 5px;
-         width: 100vw;
+         margin: 0 auto;
+         width: 95vw;
+
+         .columnLeft,
+         .columnRight {
+   
+            div {
+               margin-right: 5px;
+            }
+         }
 
          .columnRight {
+            flex: 1 1 auto;
+            display: flex;
+            justify-content: flex-end;
 
-            div {
-               font-size: calc(var(--font-size) * 0.9);
+            a.signOut {
+               margin-left: 0.6rem;
             }
          }
 
          .header {
             font-size: var(--font-size);
-            max-width: 100px;
+            max-width: 80px;
          }
       }
       .signOut {

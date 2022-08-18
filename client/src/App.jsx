@@ -7,6 +7,7 @@ import { auth } from './api/api';
 import Disk from './components/Disk/Disk';
 import Profile from './components/Profile/Profile';
 import Home from './components/Home/Home';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -36,6 +37,7 @@ function App() {
             <Route exact path='*' element={<Navigate to={'/home'} />} />
           </Routes>
         )}
+        <Footer />
       </div>
     </BrowserRouter>
   );

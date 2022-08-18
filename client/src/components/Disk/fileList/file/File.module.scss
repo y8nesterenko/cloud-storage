@@ -108,3 +108,27 @@ i {
    }
 
 }
+
+@media (max-width: 468px) {
+
+   .file {
+
+   .date, .size {
+      display: none;   
+   }
+
+   &:hover {
+
+      .download {
+         grid-column-start: 5;
+         padding: 0.3rem 0.4rem;
+      }
+
+      .delete {
+         grid-column-start: 6;
+         padding: 0.3rem 0.4rem;
+         margin-left: 1rem;
+      }
+   }
+}
+}

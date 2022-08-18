@@ -1,6 +1,6 @@
 .disk {
    margin-top: 2rem;
-   height: calc(100vh - 60px -2rem);
+   height: calc(95vh - 60px -2rem);
 
    .buttons {
       display: flex;
@@ -44,7 +44,7 @@
 
 .dropArea {
    width: 100%;
-   height: calc(100vh - 90px);
+   height: calc(95vh - 90px);
    margin: 20px;
    border: 2px dashed var(--color-primary);
    display: flex;
@@ -62,7 +62,7 @@
 
          .uploadFile {
             position: fixed;
-            bottom: 2rem;
+            bottom: 4rem;
             right: 1rem;
          }
 

@@ -59,6 +59,7 @@ code {
   width: 80vw;
   margin: 0 auto;
   padding-top: 10px;
+  height: calc(95vh - 50px) ;
 }
 
 h2 {
