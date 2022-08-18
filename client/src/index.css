@@ -42,7 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-white);
+  background-color: var(--color-secondary);
  }
 
 code {
@@ -52,8 +52,7 @@ code {
 
 .App {
   width:  100vw;
-  margin-top: 60px;
-  background-color: var(--color-secondary);
+  margin-top: 50px;
 }
 
 .wrapper {

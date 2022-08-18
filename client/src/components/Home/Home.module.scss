@@ -1,0 +1,211 @@
+.wrapper {
+   overflow: hidden;
+
+   .home {
+      // position: absolute;
+      // top: 60px;
+      // left: 0;
+      width: 100vw;
+      height: calc(100vh - 50px);
+      background: url('../../assets/img/mars.jpg');
+      background-position-x: center;
+      background-size: cover;
+      animation: animateBg 50s linear infinite;
+
+      span {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         width: 4px;
+         height: 4px;
+         background: #fff;
+         border-radius: 50%;
+         box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 1);
+         animation: animate 3s linear infinite;
+
+         &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(90deg, #fff, transparent);
+         }
+
+         &:nth-child(1) {
+            top: 0;
+            right: 0;
+            left: initial;
+            animation-delay: 0;
+            animation-duration: 1s;
+         }
+
+         &:nth-child(2) {
+            top: 0;
+            right: 80px;
+            left: initial;
+            animation-delay: 0.2s;
+            animation-duration: 3s;
+         }
+
+         &:nth-child(3) {
+            top: 80px;
+            right: 0;
+            left: initial;
+            animation-delay: 0.4s;
+            animation-duration: 2s;
+         }
+
+         &:nth-child(4) {
+            top: 0;
+            right: 180px;
+            left: initial;
+            animation-delay: 0.6s;
+            animation-duration: 1.5s;
+         }
+
+         &:nth-child(5) {
+            top: 0;
+            right: 400px;
+            left: initial;
+            animation-delay: 0.8s;
+            animation-duration: 2.5s;
+         }
+
+         &:nth-child(6) {
+            top: 0;
+            right: 600px;
+            left: initial;
+            animation-delay: 1s;
+            animation-duration: 3s;
+         }
+
+         &:nth-child(7) {
+            top: 300px;
+            right: 0;
+            left: initial;
+            animation-delay: 1.2s;
+            animation-duration: 1.75s;
+         }
+
+         &:nth-child(8) {
+            top: 0;
+            right: 700px;
+            left: initial;
+            animation-delay: 1.4s;
+            animation-duration: 1.25s;
+         }
+
+         &:nth-child(9) {
+            top: 0;
+            right: 1000px;
+            left: initial;
+            animation-delay: 0.75s;
+            animation-duration: 2.25s;
+         }
+
+         &:nth-child(10) {
+            top: 0;
+            right: 450px;
+            left: initial;
+            animation-delay: 2.75s;
+            animation-duration: 2.25s;
+         }
+      }
+
+      .kosmonavt {
+
+         img {
+            max-height: 30vh;
+            position: absolute;
+            left: 8vw;
+            animation: animateKosmonavt 7s linear infinite;
+         }
+
+         &:hover {
+
+           &, img:hover {
+               animation-play-state: paused;
+            }
+         }
+      }
+
+      .title {
+         position: absolute;
+         top: 35%;
+         display: grid;
+         place-items: center;
+         width: 95vw;
+         margin-left: 1rem;
+         font-size: calc(var(--font-size) * 1.8);
+         color: var(--color-secondary);
+      }
+
+      .buttons {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         height: calc(100vh - 50px);
+         place-items: center;
+         color: var(--color-white);
+         width: 50vw;
+         margin: 0 auto;
+
+         button {
+            min-width: 5rem;
+         }
+      }
+   }
+}
+
+@media (max-width: 468px) {
+   .wrapper {
+      .home {
+         .title {
+            top: 35%;
+         }
+      }
+   }
+}
+
+@keyframes animateBg {
+
+   0%,
+   100% {
+      transform: scale(1);
+   }
+
+   50% {
+      transform: scale(1.2);
+   }
+}
+
+@keyframes animate {
+   0% {
+      transform: rotate(315deg) translateX(0);
+      opacity: 1;
+   }
+
+   70% {
+      opacity: 1;
+   }
+
+   100% {
+      transform: rotate(315deg) translateX(-800px);
+      opacity: 0;
+   }
+}
+
+@keyframes animateKosmonavt {
+
+   0%,
+   100% {
+      transform-origin: center top;
+      transform: rotate(15deg);
+   }
+
+   50% {
+      transform-origin: center top;
+      transform: rotate(-15deg);
+   }
+}

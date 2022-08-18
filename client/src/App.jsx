@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth } from './api/api';
 import Disk from './components/Disk/Disk';
 import Profile from './components/Profile/Profile';
+import Home from './components/Home/Home';
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -19,22 +20,22 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <Navbar />
-        <div className='wrapper'>
-          {isAuth ? (
+        {isAuth ? (
+          <div className='wrapper'>
             <Routes>
               <Route path='/' element={<Disk />} />
               <Route path='/profile' element={<Profile />} />
               <Route exact path='*' element={<Navigate to={'/'} />} />
             </Routes>
-          ) : (
-            <Routes>
-              <Route path='/login' element={<Login />} />
-              <Route path='/registration' element={<Login />} />
-              <Route exact path='/home' element={<div>Landing</div>} />
-              <Route exact path='*' element={<Navigate to={'/home'} />} />
-            </Routes>
-          )}
-        </div>
+          </div>
+        ) : (
+          <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/registration' element={<Login />} />
+            <Route exact path='/home' element={<Home />} />
+            <Route exact path='*' element={<Navigate to={'/home'} />} />
+          </Routes>
+        )}
       </div>
     </BrowserRouter>
   );

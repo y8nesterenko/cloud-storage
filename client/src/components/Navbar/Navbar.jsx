@@ -71,16 +71,16 @@ const Navbar = () => {
               <img src={avatar} alt='avatar' className={style.avatar} />
             </NavLink>
             <a className={style.signOut} onClick={() => dispatch(logout())}>
-              Sign out
+              Logout
             </a>
           </div>
         ) : (
           <div className={style.columnRight}>
             <div className={style.login}>
-              <NavLink to='/login'>Sign in</NavLink>
+              <NavLink to='/login'>login</NavLink>
             </div>
             <div className={style.registration}>
-              <NavLink to='/registration'>Sign up</NavLink>
+              <NavLink to='/registration'>sign up</NavLink>
             </div>
           </div>
         )}
