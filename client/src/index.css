@@ -12,7 +12,7 @@
   --color-primary: hsl(var(--primary-color-hue), 9%, var(--dark-color-lightness));
   --color-secondary: hsl(34, var(--light-color-lightness), 55%);
   --color-success: hsl(120, 95%, 65%);
-  --color-danger: hsl(0, 95%, 65%);
+  --color-danger: hsl(0, 86%, 46%);
   --color-dark: hsl(252, 30%, var(--dark-color-lightness));
   --color-black: hsl(252, 30%, 10%);
   --color-transparent: rgba(214, 204, 255, 0.5);

@@ -55,9 +55,7 @@ const File = ({ file }) => {
         onClick={(e) => {
           e.stopPropagation();
           setIsPopupVisible(true);
-          console.log(file);
         }}
-        // onClick={(e) => deleteHandler(e)}
       >
         delete
       </button>

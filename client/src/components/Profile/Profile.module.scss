@@ -1,0 +1,54 @@
+.profile {
+   margin-top: 1.5rem;
+   display: grid;
+   place-items: center;
+
+   .title {
+      font-weight: 700;
+   }
+  
+}
+
+.avatar {
+   display: flex;
+   gap: 2rem;
+   margin-top: 2rem;
+
+   img {
+      border-radius: var(--border-radius);
+      min-height: 150px;
+      max-height: 200px;
+      max-width: 40vw;
+   }
+
+   .buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+   }
+}
+
+.uploadAvatarInput {
+   display: none;
+}
+
+.uploadAvatarLabel {
+
+   &:hover {
+      cursor: pointer;
+   }
+}
+
+.logout {
+   margin-top: 2rem;
+   background-color: var(--color-danger);
+   color: var(--color-white);
+   border-color: var(--color-primary);
+
+   &:hover {
+      background-color: var(--color-gray);
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+   }
+}

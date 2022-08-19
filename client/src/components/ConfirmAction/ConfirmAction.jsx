@@ -25,6 +25,7 @@ const ConfirmAction = (props) => {
             className={style.yes}
             onClick={() => {
               props.action();
+              closePopup();
             }}
           >
             yes

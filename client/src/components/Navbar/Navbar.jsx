@@ -8,11 +8,13 @@ import { getFiles, searchFile } from '../../api/api';
 import { showPreloader } from '../../reducers/appReducer';
 import avatarLogo from '../../assets/img/avatar.svg';
 import { SERVER_URL } from '../../config';
+import ConfirmAction from '../ConfirmAction/ConfirmAction';
 
 const Navbar = () => {
   const isAuth = useSelector((state) => state.user.isAuth);
   const currentDir = useSelector((state) => state.files.currentDir);
   const currentUser = useSelector((state) => state.user.currentUser);
+  const [isPopupLogoutVisible, setIsPopupLogoutVisible] = useState(false);
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchTimeout, setSearchTimeout] = useState(false);
@@ -70,9 +72,22 @@ const Navbar = () => {
             <NavLink to='/profile'>
               <img src={avatar} alt='avatar' className={style.avatar} />
             </NavLink>
-            <a className={style.signOut} onClick={() => dispatch(logout())}>
+            <a
+              className={style.signOut}
+              // onClick={(e) => dispatch(logout())}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsPopupLogoutVisible(true);
+              }}
+            >
               Logout
             </a>
+            <ConfirmAction
+              isVisible={isPopupLogoutVisible}
+              setIsVisible={setIsPopupLogoutVisible}
+              action={() => dispatch(logout())}
+              title={`Are you sure you want to logout?`}
+            />
           </div>
         ) : (
           <div className={style.columnRight}>
