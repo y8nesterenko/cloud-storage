@@ -24,6 +24,10 @@
          display: flex;
          justify-content: space-between;
 
+         .title {
+            margin: 0 auto;
+         }
+
          button {
             background-color: var(--color-secondary);
             color: var(--color-primary);

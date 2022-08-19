@@ -64,6 +64,7 @@ code {
 
 h2 {
   text-align: center;
+  margin-top: 1rem;
 }
 
 a {
@@ -95,6 +96,7 @@ button, select {
 
 button:hover, select:hover {
   color: var(--color-secondary);
+  background-color: var(--color-light);
   border-color: var(--color-secondary);
   cursor: pointer;
 }

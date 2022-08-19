@@ -161,7 +161,7 @@ class FileController {
    async deleteAvatar(req, res) {
       try {
          const user = await User.findById(req.user.id)
-         fs.unlinkSync(config.get('staticPath') + "/" + user.avatar)
+         fs.unlinkSync(config.get('staticPath') + '/' + user.avatar)
          user.avatar = null
          await user.save()
          return res.json(user)

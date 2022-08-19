@@ -11,7 +11,10 @@ const ConfirmAction = (props) => {
       className={
         props.isVisible ? style.popup + ' ' + style.active : style.popup
       }
-      onClick={closePopup}
+      onClick={(e) => {
+        e.stopPropagation();
+        closePopup();
+      }}
     >
       <div className={style.content} onClick={(e) => e.stopPropagation()}>
         <div className={style.header}>

@@ -7,8 +7,9 @@ import style from './Profile.module.scss';
 import { SERVER_URL } from '../../config';
 import avatarLogo from '../../assets/img/avatar.svg';
 import ConfirmAction from '../ConfirmAction/ConfirmAction';
+import Theme from '../Theme/Theme';
 
-const Profile = () => {
+const Profile = (props) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -48,7 +49,6 @@ const Profile = () => {
         <div className={style.buttons}>
           {currentUser.avatar && (
             <button
-              // onClick={() => dispatch(deleteAvatar())}
               onClick={(e) => {
                 e.stopPropagation();
                 setIsPopupVisible(true);
@@ -72,6 +72,13 @@ const Profile = () => {
           </button>
         </div>
       </div>
+
+      <Theme
+        pickedColor={props.pickedColor}
+        setPickedColor={props.setPickedColor}
+        setColor={props.setColor}
+      />
+
       <button
         className={style.logout}
         onClick={(e) => {

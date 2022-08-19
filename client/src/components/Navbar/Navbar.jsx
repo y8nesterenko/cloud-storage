@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './Navbar.module.scss';
-import Logo from '../../assets/img/logo.svg';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
@@ -9,8 +8,9 @@ import { showPreloader } from '../../reducers/appReducer';
 import avatarLogo from '../../assets/img/avatar.svg';
 import { SERVER_URL } from '../../config';
 import ConfirmAction from '../ConfirmAction/ConfirmAction';
+import withRouter from '../../hocs/withRouter';
 
-const Navbar = () => {
+const Navbar = (props) => {
   const isAuth = useSelector((state) => state.user.isAuth);
   const currentDir = useSelector((state) => state.files.currentDir);
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -53,7 +53,7 @@ const Navbar = () => {
           <div className={style.header}>
             <NavLink to='/'>NY Cloud Storage</NavLink>
           </div>
-          {isAuth && (
+          {props.router.location.pathname !== '/profile' && isAuth && (
             <div className={style.searchBar}>
               <i className='_icon-search'></i>
               <input
@@ -74,7 +74,6 @@ const Navbar = () => {
             </NavLink>
             <a
               className={style.signOut}
-              // onClick={(e) => dispatch(logout())}
               onClick={(e) => {
                 e.stopPropagation();
                 setIsPopupLogoutVisible(true);
@@ -104,4 +103,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

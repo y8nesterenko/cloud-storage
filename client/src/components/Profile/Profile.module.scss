@@ -2,11 +2,11 @@
    margin-top: 1.5rem;
    display: grid;
    place-items: center;
+   max-height: calc(95vh - 90px);
 
    .title {
       font-weight: 700;
-   }
-  
+   }  
 }
 
 .avatar {
