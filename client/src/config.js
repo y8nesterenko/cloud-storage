@@ -1,4 +1,5 @@
 export const APP_URL = 'http://localhost:3000/'
+// export const APP_URL = 'https://ny-cloud-storage.herokuapp.com/'
 // export const SERVER_URL = 'http://localhost:5000/'
 export const SERVER_URL = 'http://192.168.1.140:5000/'
-// export const SERVER_URL = 'https://secure-sierra-86958.herokuapp.com/'
+// export const SERVER_URL = 'https://obscure-harbor-68068.herokuapp.com/'
