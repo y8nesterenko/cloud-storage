@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const config = require('config')
-fileUpload = require('express-fileupload')
+const fileUpload = require('express-fileupload')
 const authRouter = require('./routes/auth.routes')
 const fileRouter = require('./routes/file.routes')
 const app = express()
